@@ -45,8 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
    
   final uri = Uri.https('127.0.0.1:3050', '/');
-  var response1 = await http.get(uri);
-  print(jsonDecode(response1.body)['status']);
+  var response = await http.get(uri);
+  print(response.body);
   
 
   }
