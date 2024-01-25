@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:js_util';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -40,13 +42,31 @@ class _MyHomePageState extends State<MyHomePage> {
  
 
   void _incrementCounter() async {
-
-
-
    
-  final uri = Uri.https('127.0.0.1:3050', '/');
-  var response = await http.get(uri);
-  print(response.body);
+    final body = {
+      "fullName": "faisal shaabeen",
+      "username": "Bob",
+      "age": "30",
+      "govermentalID": "1089036089",
+      "birthOfDate": "2015/12/27",
+      "email":"fe9lsh3ben@gmail.com"
+      };
+      
+      final jsonString = json.encode(body);
+      final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
+      
+      try{
+
+        final uri = Uri.https('127.0.0.1:3050', /*'/auth&auth'*/);
+        var response = await http.post(uri, headers: headers ,body: jsonString);
+        
+        print(response.body);
+
+      }catch(e){
+        print(e);
+
+      }
+      
   
 
   }
