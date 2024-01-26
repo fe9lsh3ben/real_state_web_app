@@ -43,8 +43,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async {
    
     final body = {
-      "fullName": "faisal shaabeen",
-      "username": "Bob",
+      "fullName": {
+        "english":<String> ["Faisal", "Shabeen"],
+        "arabic":"فيصل شعبين"
+      },
+      "username": "fe9l",
       "age": "30",
       "govermentalID": "1089036089",
       "birthOfDate": "2015/12/27",
@@ -56,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       
       try{
 
-        final uri = Uri.https('127.0.0.1:3050', /*'/auth&auth'*/);
+        final uri = Uri.https('127.0.0.1:3050', 'auth&auth');
         var response = await http.post(uri, headers: headers ,body: jsonString);
         
         print(response.body);
