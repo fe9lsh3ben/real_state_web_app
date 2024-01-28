@@ -59,8 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
       
       try{
 
-        final uri = Uri.https('127.0.0.1:3050', 'auth&auth');
-        var response = await http.post(uri, headers: headers ,body: jsonString);
+        final uri = Uri.https('127.0.0.1:3050', '/');
+        var response = await http.post(uri, headers: headers
+        ,body: jsonString
+        );
         
         print(response.body);
 
