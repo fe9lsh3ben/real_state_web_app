@@ -5,6 +5,10 @@ import 'package:latlong2/latlong.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+extension Ex on double {
+  double toPrecision(int n) => double.parse(toStringAsFixed(n));
+}
+
 class HomePage extends StatefulWidget {
   static const String route = '/';
 
@@ -15,8 +19,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  double currentLat = 23.8859 ;
+  double currentLong = 45.0792 ;
   @override
   void initState() {
+
+
     super.initState();
     // showIntroDialogIfNeeded();
   }
@@ -29,8 +38,15 @@ class _HomePageState extends State<HomePage> {
         children: [
           FlutterMap(
             options: MapOptions(
-              initialCenter: const LatLng(51.5, -0.09),
-              initialZoom: 5,
+              onPositionChanged: (position, hasGesture) {
+                setState(() {
+                  currentLat = position.center!.latitude.toPrecision(4);
+                  currentLong = position.center!.longitude.toPrecision(4);                  
+                });
+                
+              },
+              initialCenter: const LatLng(24.6616, 46.7282),
+              initialZoom: 15,
               cameraConstraint: CameraConstraint.contain(
                 bounds: LatLngBounds(
                   const LatLng(-90, -180),
@@ -60,7 +76,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          const FloatingActionButton(onPressed: null,)
+          const FloatingActionButton(onPressed: null,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(2),
+                alignment: Alignment.bottomRight,
+                width: MediaQuery.of(context).size.width / 2, height: MediaQuery.of(context).size.width % 40,
+                child: Text("$currentLat -    $currentLong"),)],
+                )
         ],
       ),
     );
@@ -88,7 +113,7 @@ class _HomePageState extends State<HomePage> {
 
   TileLayer get openStreetMapTileLayer => TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      userAgentPackageName: 'dev.fleaflet.flutter_map.example',
+      userAgentPackageName: 'com.Real-Estate.app',
       // Use the recommended flutter_map_cancellable_tile_provider package to
       // support the cancellation of loading tiles.
       tileProvider: CancellableNetworkTileProvider(),
