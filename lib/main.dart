@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:real_state_web_app/widgets.dart/map.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
-}  
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
