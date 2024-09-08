@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       //drawer: ,
       body: Stack(
         children: [
-          FlutterMap(
+          /* FlutterMap(
             options: MapOptions(
               onPositionChanged: (position, hasGesture) {
                 setState(() {
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ],
-          ),
+          ),*/
           const FloatingActionButton(onPressed: null,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
