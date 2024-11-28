@@ -7,6 +7,11 @@ import 'package:dio/dio.dart';
 import 'package:real_state_web_app/widgets.dart/map.dart';
 import 'package:flutter/widgets.dart';
 
+
+// ...
+// String ACCESS_TOKEN = String.fromEnvironment("ACCESS_TOKEN");
+// MapboxOptions.setAccessToken(ACCESS_TOKEN);
+// ...
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
